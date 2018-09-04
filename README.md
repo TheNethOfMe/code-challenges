@@ -1,2 +1,3 @@
 # code-challenges
-Daily code challenges for 301
+
+This is my repository for the daily code challenges in Code Fellow's 301 class.
