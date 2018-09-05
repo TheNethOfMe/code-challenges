@@ -56,19 +56,24 @@ const addCurve = (arr) => {
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 4
 //
-// Write a function named greeting that takes in a string and returns the string in all uppercase letters. 
-// 
+// Write a function named greeting that takes in a string and returns the string in all uppercase letters.
+//
 // Then, write a function named speaker that takes in a string and a callback function. 
 // The speaker function should return the string in all uppercase letters only by invoking the callback.
 // ------------------------------------------------------------------------------------------------
 
 const greeting = (word) => {
-  // Solution code here...
-}
+  return word.toUpperCase();
+};
 
 const speaker = (message, callback) => {
-  // Solution code here...
-}
+  const messageArr = message.split(' ');
+  const capitalArr = [];
+  messageArr.forEach((word) => {
+    capitalArr.push(callback(word));
+  });
+  return capitalArr.join(' ');
+};
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 5
