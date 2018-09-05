@@ -153,8 +153,9 @@ const removeWithForEach = (input, callback) => {
 // ------------------------------------------------------------------------------------------------
 
 const removeWithAnon = (input) => {
-  // Solution code here...
-}
+  input.forEach((num) => num % 3 === 2 && input.pop());
+  return input;
+};
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 9
@@ -175,13 +176,17 @@ const removeWithAnon = (input) => {
 // ------------------------------------------------------------------------------------------------
 
 const createList = (availableItems) => {
-  // Solution code here...
-}
+  const groceryList = [];
+  availableItems.forEach((item) => {
+    item.available && groceryList.push(item.name);
+  });
+  return groceryList;
+};
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 10
 //
-// Write a function named fizzbuzz that takes in an array of numbers. 
+// Write a function named fizzbuzz that takes in an array of numbers.
 //
 // Iterate over the array using forEach to determine the output based on several rules:
 //   - If a number is divisible by 3, add the word "Fizz" to the output array.
