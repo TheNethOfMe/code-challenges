@@ -45,8 +45,13 @@ const addBonusPoints = (arr) => {
 // ------------------------------------------------------------------------------------------------
 
 const addCurve = (arr) => {
-  // Solution code here...
-}
+  const result = [];
+  arr.forEach((score) => {
+    const fivePercent = score * 0.05;
+    result.push(fivePercent + score);
+  });
+  return result;
+};
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 4
