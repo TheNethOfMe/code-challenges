@@ -93,17 +93,22 @@ const speaker = (message, callback) => {
 // ------------------------------------------------------------------------------------------------
 
 const addValues = (arr, value) => {
-  // Solution code here...
-}
+  arr.push(value);
+};
 
 const addNumbers = (num, arr, times, callback) => {
-  // Solution code here...
-}
+  let i = 0;
+  while (i < times) {
+    callback(arr, num);
+    i++;
+  }
+  return arr;
+};
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 6
 //
-// Write a function named removeOne that takes in a number and an array. 
+// Write a function named removeOne that takes in a number and an array.
 // If the number divided by three has a remainder of two, pop one element off of the array.
 // Hint: you may want to look into the modulo operation.
 //
@@ -115,12 +120,13 @@ const addNumbers = (num, arr, times, callback) => {
 // ------------------------------------------------------------------------------------------------
 
 const removeOne = (num, input) => {
-  // Solution code here...
-}
+  num % 3 === 2 && input.pop();
+};
 
 const removeElements = (input, callback) => {
-  // Solution code here...
-}
+  input.forEach((num) => callback(num, input));
+  return input;
+};
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 7
@@ -212,7 +218,11 @@ describe('Testing challenge 2', () => {
 
 describe('Testing challenge 3', () => {
   test('It should increase each raw score by 5%', () => {
-    expect(addCurve([55, 79, 100, 85, 92])).toStrictEqual([ 57.75, 82.95, 105, 89.25, 96.60000000000001 ]);
+    const resultScores = addCurve([55, 79, 100, 85, 92]);
+    const expectedScores = [ 57.75, 82.95, 105, 89.25, 96.60000000000001 ];
+    for (let i in expectedScores) {
+      expect(resultScores[i]).toBeCloseTo(expectedScores[i]);
+    }
   });
 });
 
