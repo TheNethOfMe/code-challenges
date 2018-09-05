@@ -198,8 +198,20 @@ const createList = (availableItems) => {
 // ------------------------------------------------------------------------------------------------
 
 const fizzbuzz = (arr) => {
-  // Solution code here...
-}
+  const result = [];
+  arr.forEach((num) => {
+    if (num % 3 === 0 && num % 5 === 0) {
+      result.push('Fizz Buzz');
+    } else if (num % 3 === 0) {
+      result.push('Fizz');
+    } else if (num % 5 === 0) {
+      result.push('Buzz');
+    } else {
+      result.push(num);
+    }
+  });
+  return result;
+};
 
 // ------------------------------------------------------------------------------------------------
 // TESTS
