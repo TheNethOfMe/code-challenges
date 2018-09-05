@@ -200,7 +200,7 @@ const createList = (availableItems) => {
 const fizzbuzz = (arr) => {
   const result = [];
   arr.forEach((num) => {
-    if (num % 3 === 0 && num % 5 === 0) {
+    if (num % 15 === 0) {
       result.push('Fizz Buzz');
     } else if (num % 3 === 0) {
       result.push('Fizz');
