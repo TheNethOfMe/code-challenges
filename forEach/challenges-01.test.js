@@ -28,7 +28,9 @@ const pushIntoSecond = (arr) => {
 
 const addBonusPoints = (arr) => {
   const result = [];
-  arr.forEach((item) => result.push(item += 5));
+  for (let value of arr) {
+    result.push(value += 5);
+  }
   return result;
 };
 
