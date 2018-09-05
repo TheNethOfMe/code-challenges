@@ -124,7 +124,9 @@ const removeOne = (num, input) => {
 };
 
 const removeElements = (input, callback) => {
-  input.forEach((num) => callback(num, input));
+  for (let num of input) {
+    callback(num, input);
+  }
   return input;
 };
 
@@ -135,8 +137,9 @@ const removeElements = (input, callback) => {
 // ------------------------------------------------------------------------------------------------
 
 const removeWithForEach = (input, callback) => {
-  // Solution code here...
-}
+  input.forEach((num) => callback(num, input));
+  return input;
+};
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 8
