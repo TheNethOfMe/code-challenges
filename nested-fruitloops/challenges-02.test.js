@@ -26,18 +26,29 @@ const alkiBeach = [ 33, 31, 147, 130, 27, 93, 38, 126, 141, 63, 46, 17 ];
 
 const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
+// const grandTotal = (hours, stores) => {
+//   const hourlySales = [];
+//   for (let i = 0; i < hoursOpen.length; i++) {
+//     let cookiesThisHour = 0;
+//     for (let j = 0; j < cookieStores.length; j++) {
+//       cookiesThisHour += cookieStores[j][i];
+//     }
+//     hourlySales.push(cookiesThisHour);
+//   }
+//   return hourlySales;
+// };
+
 const grandTotal = (hours, stores) => {
   const hourlySales = [];
-  for (let i = 0; i < hoursOpen.length; i++) {
+  hours.forEach((hour, i) => {
     let cookiesThisHour = 0;
-    for (let j = 0; j < cookieStores.length; j++) {
+    stores.forEach((store, j) => {
       cookiesThisHour += cookieStores[j][i];
-    }
+    });
     hourlySales.push(cookiesThisHour);
-  }
+  });
   return hourlySales;
 };
-
 
 
 // ------------------------------------------------------------------------------------------------
