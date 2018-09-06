@@ -55,7 +55,8 @@ const howManyTreats = (arr) => {
 // ------------------------------------------------------------------------------------------------
 
 const battleship = (board, row, col) => {
-  // Solution code here...
+  const space = board[row][col];
+  return space === '#' ? 'hit' : 'miss';
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -230,24 +231,24 @@ describe('Testing challenge 2', () => {
   })
 });
 
-// describe('Testing challenge 3', () => {
-//   const battleshipData = [
-//     ['#', ' ', '#', ' '],
-//     ['#', ' ', '#', ' '],
-//     ['#', ' ', ' ', ' '],
-//     [' ', ' ', '#', '#'],
-//   ];
+describe('Testing challenge 3', () => {
+  const battleshipData = [
+    ['#', ' ', '#', ' '],
+    ['#', ' ', '#', ' '],
+    ['#', ' ', ' ', ' '],
+    [' ', ' ', '#', '#'],
+  ];
 
-//   test('It should return "hit" when it hits a boat', () => {
-//     expect(battleship(battleshipData, 0, 0)).toStrictEqual('hit');
-//     expect(battleship(battleshipData, 1, 0)).toStrictEqual('hit');
-//   });
+  test('It should return "hit" when it hits a boat', () => {
+    expect(battleship(battleshipData, 0, 0)).toStrictEqual('hit');
+    expect(battleship(battleshipData, 1, 0)).toStrictEqual('hit');
+  });
 
-//   test('It should return "miss" when it doesn\'t hit a boat', () => {
-//     expect(battleship(battleshipData, 0, 1)).toStrictEqual('miss');
-//     expect(battleship(battleshipData, 3, 0)).toStrictEqual('miss');
-//   });
-// });
+  test('It should return "miss" when it doesn\'t hit a boat', () => {
+    expect(battleship(battleshipData, 0, 1)).toStrictEqual('miss');
+    expect(battleship(battleshipData, 3, 0)).toStrictEqual('miss');
+  });
+});
 
 // describe('Testing challenge 4', () => {
 //   test('It should multiply all the numbers together', () => {
