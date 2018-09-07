@@ -202,7 +202,22 @@ const excel = (str) => {
 // ------------------------------------------------------------------------------------------------
 
 const detectTicTacToeWin = (board) => {
-  // Solution code here...
+  let result = false;
+  const winnerCheck = (a, b, c) => {
+    if ((a === 'X' && b === 'X' && c === 'X') || (a === 'O' && b === 'O' && c === 'O')) {
+      return true;
+    }
+  };
+  for (let i = 0; i < 3; i++) {
+    if (winnerCheck(board[0][i], board[1][i], board[2][i]) || 
+    winnerCheck(board[i][0], board[i][1], board[i][2])) {
+      result = true;
+    }
+  }
+  if (winnerCheck(board[0][0], board[1][1], board[2][2]) || winnerCheck(board[0][2], board[1][1], board[2][0])) {
+    result = true;
+  }
+  return result;
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -320,16 +335,16 @@ describe('Testing challenge 7', () => {
   });
 });
 
-// describe('Testing challenge 8', () => {
-//   test('It should return true if there are three in a row', () => {
-//     expect(detectTicTacToeWin([ ['X', '', 'O'], ['X', 'O', ''], ['X', 'O', 'X'] ])).toStrictEqual(true);
-//     expect(detectTicTacToeWin([ ['O', '', 'X'], ['X', 'O', 'X'], ['X', '', 'O']])).toStrictEqual(true);
-//   });
+describe('Testing challenge 8', () => {
+  test('It should return true if there are three in a row', () => {
+    expect(detectTicTacToeWin([ ['X', '', 'O'], ['X', 'O', ''], ['X', 'O', 'X'] ])).toStrictEqual(true);
+    expect(detectTicTacToeWin([ ['O', '', 'X'], ['X', 'O', 'X'], ['X', '', 'O']])).toStrictEqual(true);
+  });
 
-//   test('It should return false if there are not three in a row', () => {
-//     expect(detectTicTacToeWin([ ['X', '', 'O'], ['O', 'O', ''], ['X', 'O', 'X'] ])).toStrictEqual(false);
-//   });
-// });
+  test('It should return false if there are not three in a row', () => {
+    expect(detectTicTacToeWin([ ['X', '', 'O'], ['O', 'O', ''], ['X', 'O', 'X'] ])).toStrictEqual(false);
+  });
+});
 
 // describe('Testing challenge 9', () => {
 //   test('It should return the number of adjacent bombs', () => {
