@@ -248,7 +248,32 @@ const detectTicTacToeWin = (board) => {
 // ------------------------------------------------------------------------------------------------
 
 const minesweeper = (board) => {
-  // Solution code here...
+  const result = [];
+  const checkCell = (row, col) => {
+    if (row > 4 || row < 0) {
+      return 0;
+    } else {
+      return board[row][col] === '*' ? 1 : 0;
+    }
+  };
+  const checkSurrounding = (row, col) => {
+    let surroundingCells = 0;
+    for (let x = -1; x < 2; x++) {
+      for (let y = -1; y < 2; y++) {
+        surroundingCells += checkCell(row + x, col + y);
+      }
+    }
+    return surroundingCells;
+  };
+  board.forEach((row, i) => {
+    const newRow = [];
+    row.forEach((cell, j) => {
+      const cellValue = cell === '*' ? 9 : checkSurrounding(i, j);
+      newRow.push(cellValue);
+    });
+    result.push(newRow);
+  });
+  return result;
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -346,20 +371,20 @@ describe('Testing challenge 8', () => {
   });
 });
 
-// describe('Testing challenge 9', () => {
-//   test('It should return the number of adjacent bombs', () => {
-//     const minefield =
-//     [ [ null, null, null, null, '*' ],
-//       [ null, null, null, null, '*' ],
-//       [ '*', null, null, null, null ],
-//       [ null, null, null, '*', null ],
-//       [ null, '*', null, null, null ] ];
-//     const expected =
-//       [ [0, 0, 0, 2, 9],
-//         [1, 1, 0, 2, 9],
-//         [9, 1, 1, 2, 2],
-//         [2, 2, 2, 9, 1],
-//         [1, 9, 2, 1, 1] ];
-//     expect(minesweeper(minefield)).toStrictEqual(expected);
-//   });
-// });
+describe('Testing challenge 9', () => {
+  test('It should return the number of adjacent bombs', () => {
+    const minefield =
+    [ [ null, null, null, null, '*' ],
+      [ null, null, null, null, '*' ],
+      [ '*', null, null, null, null ],
+      [ null, null, null, '*', null ],
+      [ null, '*', null, null, null ] ];
+    const expected =
+      [ [0, 0, 0, 2, 9],
+        [1, 1, 0, 2, 9],
+        [9, 1, 1, 2, 2],
+        [2, 2, 2, 9, 1],
+        [1, 9, 2, 1, 1] ];
+    expect(minesweeper(minefield)).toStrictEqual(expected);
+  });
+});
