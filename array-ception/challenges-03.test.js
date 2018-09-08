@@ -166,7 +166,6 @@ const lowestWeeklyAverage = (weather) => {
 
 const excel = (str) => {
   const result = [];
-  const newArray = [];
   let splitString = str.split('\n');
   splitString.forEach((row) => {
     const newRow = row.split(',');
