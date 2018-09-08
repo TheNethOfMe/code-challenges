@@ -193,7 +193,11 @@ const removeLastCharacters = (str, numberOfCharacters) => {
 // ------------------------------------------------------------------------------------------------
 
 const removeVowels = (input) => {
-  // Solution code here...
+  const splitInput = input.split('');
+  let filteredInput = splitInput.filter((letter) => {
+    return !/(a|e|i|o|u)/.test(letter);
+  });
+  return filteredInput.join('');
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -296,14 +300,14 @@ describe('Testing challenge 8', () => {
   });
 });
 
-// describe('Testing challenge 9', () => {
-//   test('It should return the string without vowels', () => {
-//     expect(removeVowels('gregor')).toStrictEqual('grgr');
-//     expect(removeVowels('gregor').length).toStrictEqual(4);
-//     expect(removeVowels('asdf')).toStrictEqual('sdf');
-//     expect(removeVowels('why')).toStrictEqual('why');
-//   });
-// });
+describe('Testing challenge 9', () => {
+  test('It should return the string without vowels', () => {
+    expect(removeVowels('gregor')).toStrictEqual('grgr');
+    expect(removeVowels('gregor').length).toStrictEqual(4);
+    expect(removeVowels('asdf')).toStrictEqual('sdf');
+    expect(removeVowels('why')).toStrictEqual('why');
+  });
+});
 
 // describe('Testing challenge 10', () => {
 //   test('It should return the string without vowels', () => {
