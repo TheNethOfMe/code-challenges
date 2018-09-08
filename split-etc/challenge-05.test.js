@@ -191,11 +191,11 @@ const removeLastCharacters = (str, numberOfCharacters) => {
 //
 // For example, removeVowels('gregor') returns 'grgr'.
 // ------------------------------------------------------------------------------------------------
-
+const vowelRegEx = /(a|e|i|o|u)/;
 const removeVowels = (input) => {
   const splitInput = input.split('');
   let filteredInput = splitInput.filter((letter) => {
-    return !/(a|e|i|o|u)/.test(letter);
+    return !vowelRegEx.test(letter);
   });
   return filteredInput.join('');
 };
@@ -212,7 +212,13 @@ const removeVowels = (input) => {
 // ------------------------------------------------------------------------------------------------
 
 const extractVowels = (input) => {
-  // Solution code here...
+  const result = [];
+  result.push(removeVowels(input));
+  let vowelsOnly = input.split('').filter((letter) => {
+    return vowelRegEx.test(letter);
+  });
+  result.push(vowelsOnly.sort().join(''));
+  return result;
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -309,11 +315,11 @@ describe('Testing challenge 9', () => {
   });
 });
 
-// describe('Testing challenge 10', () => {
-//   test('It should return the string without vowels', () => {
-//     expect(extractVowels('gregor')).toStrictEqual(['grgr', 'eo']);
-//     expect(extractVowels('gregor').length).toStrictEqual(2);
+describe('Testing challenge 10', () => {
+  test('It should return the string without vowels', () => {
+    expect(extractVowels('gregor')).toStrictEqual(['grgr', 'eo']);
+    expect(extractVowels('gregor').length).toStrictEqual(2);
 
-//     expect(extractVowels('The quick brown fox')).toStrictEqual(['Th qck brwn fx', 'eioou']);
-//   });
-// });
+    expect(extractVowels('The quick brown fox')).toStrictEqual(['Th qck brwn fx', 'eioou']);
+  });
+});
