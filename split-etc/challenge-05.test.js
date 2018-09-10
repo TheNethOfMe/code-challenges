@@ -191,14 +191,10 @@ const removeLastCharacters = (str, numberOfCharacters) => {
 //
 // For example, removeVowels('gregor') returns 'grgr'.
 // ------------------------------------------------------------------------------------------------
-const vowelRegEx = /(a|e|i|o|u)/;
+
 const removeVowels = (input) => {
-  const splitInput = input.split('');
-  let filteredInput = splitInput.filter((letter) => {
-    return !vowelRegEx.test(letter);
-  });
-  return filteredInput.join('');
-};
+  return input.replace(/[aeiou]/ig, '');
+}
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 10
@@ -210,7 +206,7 @@ const removeVowels = (input) => {
 // For example, extractVowels('gregor') returns ['grgr', 'eo'].
 // Similarly, extractVowels('The quick brown fox') returns ['Th qck brwn fx', 'eioou']
 // ------------------------------------------------------------------------------------------------
-
+const vowelRegEx = /(a|e|i|o|u)/;
 const extractVowels = (input) => {
   const result = [];
   result.push(removeVowels(input));
