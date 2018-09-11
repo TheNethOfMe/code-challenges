@@ -48,13 +48,13 @@ const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningT
   finalExam: true };
 
 const getFrom = (obj, property) => {
-  if (property === "keys") {
+  if (property === 'keys') {
     return getKeys(obj);
   }
-  if (property === "values") {
+  if (property === 'values') {
     return getValues(obj);
   }
-  if (property === "entries") {
+  if (property === 'entries') {
     return getEntries(obj);
   }
 };
@@ -111,7 +111,7 @@ let characters = [
     children: [],
     house: 'Snow'
   }
-]
+];
 
 const totalCharacters = (arr) => {
   return arr.length;
@@ -126,9 +126,7 @@ const totalCharacters = (arr) => {
 
 const getHouses = (arr) => {
   const result = [];
-  getFrom(arr, 'values').forEach((item) => {
-    result.push(item.house);
-  });
+  getFrom(arr, 'values').forEach((item) => { result.push(item.house); });
   return result;
 };
 
@@ -140,8 +138,12 @@ const getHouses = (arr) => {
 // ------------------------------------------------------------------------------------------------
 
 const hasChildrenValues = (arr, character) => {
-  // Solution code here...
-}
+  let selectedCharacter;
+  getFrom(arr, 'values').forEach((char) => {
+    if (char.name === character) { selectedCharacter = char; }
+  });
+  return !!selectedCharacter.children.length;
+};
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 8
@@ -152,8 +154,13 @@ const hasChildrenValues = (arr, character) => {
 // ------------------------------------------------------------------------------------------------
 
 const hasChildrenEntries = (arr, character) => {
-  // Solution code here...
-}
+  let selectedCharacter;
+  getFrom(arr, 'entries').forEach((char) => {
+    const nameMatch = char[1].name === 'Jon' ? `Jon ${char[1].house.charAt(0)}.` : char[1].name;
+    if (nameMatch === character) { selectedCharacter = char[1]; }
+  });
+  return !!selectedCharacter.children.length;
+};
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 9
@@ -164,8 +171,13 @@ const hasChildrenEntries = (arr, character) => {
 // ------------------------------------------------------------------------------------------------
 
 const houseSize = (arr) => {
-  // Solution code here...
-}
+  const result = [];
+  getFrom(arr, 'values').forEach((character) => {
+    const houseMembers = character.spouse ? character.children.length + 2 : character.children.length + 1;
+    result.push({ house: character.house, members: houseMembers });
+  });
+  return result;
+};
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 10
@@ -182,8 +194,14 @@ const houseSize = (arr) => {
 const deceasedSpouses = ['Catelyn', 'Lysa', 'Robert', 'Khal Drogo', 'Alerie'];
 
 const houseSurvivors = (arr) => {
-  // Solution code here...
-}
+  const result = [];
+  getFrom(arr, 'values').forEach((character) => {
+    let houseMembers = character.children.length + 2;
+    if (!character.spouse || deceasedSpouses.indexOf(character.spouse) > -1) { houseMembers--; }
+    result.push({ house: character.house, members: houseMembers });
+  });
+  return result;
+};
 
 // ------------------------------------------------------------------------------------------------
 // TESTS
@@ -247,35 +265,35 @@ describe('Testing challenge 6', () => {
   });
 });
 
-// describe('Testing challenge 7', () => {
-//   test('It should return true for characters that have children', () => {
-//     expect(hasChildrenValues(characters, 'Daenarys')).toBeTruthy();
-//   });
+describe('Testing challenge 7', () => {
+  test('It should return true for characters that have children', () => {
+    expect(hasChildrenValues(characters, 'Daenarys')).toBeTruthy();
+  });
 
-//   test('It should return false to characters who do not have children', () => {
-//     expect(hasChildrenValues(characters, 'Sansa')).toBeFalsy();
-//   });
-// });
+  test('It should return false to characters who do not have children', () => {
+    expect(hasChildrenValues(characters, 'Sansa')).toBeFalsy();
+  });
+});
 
-// describe('Testing challenge 8', () => {
-//   test('It should return true for characters that have children', () => {
-//     expect(hasChildrenEntries(characters, 'Eddard')).toBeTruthy();
-//   });
+describe('Testing challenge 8', () => {
+  test('It should return true for characters that have children', () => {
+    expect(hasChildrenEntries(characters, 'Eddard')).toBeTruthy();
+  });
 
-//   test('It should return false to characters who do not have children', () => {
-//     expect(hasChildrenEntries(characters, 'Jon S.')).toBeFalsy();
-//   });
-// });
+  test('It should return false to characters who do not have children', () => {
+    expect(hasChildrenEntries(characters, 'Jon S.')).toBeFalsy();
+  });
+});
 
-// describe('Testing challenge 9', () => {
-//   test('It should return an object for each house containing the name and size', () => {
-//     expect(houseSize(characters)).toStrictEqual([ { house: 'Stark', members: 7 }, { house: 'Arryn', members: 3 }, { house: 'Lannister', members: 5 }, { house: 'Targaryen', members: 5 }, { house: 'Tyrell', members: 4 }, { house: 'Stark', members: 2 }, { house: 'Snow', members: 1 } ]);
-//     expect(houseSize(characters).length).toStrictEqual(7);
-//   });
-// });
+describe('Testing challenge 9', () => {
+  test('It should return an object for each house containing the name and size', () => {
+    expect(houseSize(characters)).toStrictEqual([ { house: 'Stark', members: 7 }, { house: 'Arryn', members: 3 }, { house: 'Lannister', members: 5 }, { house: 'Targaryen', members: 5 }, { house: 'Tyrell', members: 4 }, { house: 'Stark', members: 2 }, { house: 'Snow', members: 1 } ]);
+    expect(houseSize(characters).length).toStrictEqual(7);
+  });
+});
 
-// describe('Testing challenge 10', () => {
-//   test('It should not include any deceased spouses', () => {
-//     expect(houseSurvivors(characters)).toStrictEqual([ { house: 'Stark', members: 6 }, { house: 'Arryn', members: 2 }, { house: 'Lannister', members: 4 }, { house: 'Targaryen', members: 4 }, { house: 'Tyrell', members: 3 }, { house: 'Stark', members: 2 }, { house: 'Snow', members: 1 } ]);
-//   });
-// });
+describe('Testing challenge 10', () => {
+  test('It should not include any deceased spouses', () => {
+    expect(houseSurvivors(characters)).toStrictEqual([ { house: 'Stark', members: 6 }, { house: 'Arryn', members: 2 }, { house: 'Lannister', members: 4 }, { house: 'Targaryen', members: 4 }, { house: 'Tyrell', members: 3 }, { house: 'Stark', members: 2 }, { house: 'Snow', members: 1 } ]);
+  });
+});
