@@ -48,15 +48,7 @@ const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningT
   finalExam: true };
 
 const getFrom = (obj, property) => {
-  if (property === 'keys') {
-    return getKeys(obj);
-  }
-  if (property === 'values') {
-    return getValues(obj);
-  }
-  if (property === 'entries') {
-    return getEntries(obj);
-  }
+  return Object[property](obj);
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -197,7 +189,7 @@ const houseSurvivors = (arr) => {
   const result = [];
   getFrom(arr, 'values').forEach((character) => {
     let houseMembers = character.children.length + 2;
-    if (!character.spouse || deceasedSpouses.indexOf(character.spouse) > -1) { houseMembers--; }
+    if (!character.spouse || deceasedSpouses.includes(character.spouse)) { houseMembers--; }
     result.push({ house: character.house, members: houseMembers });
   });
   return result;
