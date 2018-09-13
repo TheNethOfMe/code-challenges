@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------------------------
 
 const oddValues = (input) => {
-  return input.filter((num) => num % 2 !== 0);
+  return input.filter((num) => num % 2);
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -168,7 +168,7 @@ const getCharactersWithoutChildren = (input) => {
 // ------------------------------------------------------------------------------------------------
 
 const evenOddNumericValues = (input) => {
-  return input.filter((item) => typeof item === 'number').map((item) => item % 2 === 0 ? 'even': 'odd');
+  return input.filter((item) => typeof(item) === 'number').map((item) => item % 2 ? 'odd': 'even');
 };
 
 // ------------------------------------------------------------------------------------------------
