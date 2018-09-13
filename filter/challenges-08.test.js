@@ -86,7 +86,7 @@ const snorlaxData = {
 };
 
 const getBaseStatGreaterThan = (input, minBaseStat) => {
-  // Solution code here...
+  return input.filter((stat) => stat.baseStat > minBaseStat);
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -100,7 +100,7 @@ const getBaseStatGreaterThan = (input, minBaseStat) => {
 // ------------------------------------------------------------------------------------------------
 
 const getStatName = (input, minBaseStat) => {
-  // Solution code here...
+  return input.filter((stat) => stat.baseStat > minBaseStat).map((stat) => stat.stat.name);
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -154,7 +154,7 @@ const characters = [
 ];
 
 const getCharactersWithoutChildren = (input) => {
-  // Solution code here...
+  return input.filter((character) => !character.hasOwnProperty('children'));
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -168,7 +168,7 @@ const getCharactersWithoutChildren = (input) => {
 // ------------------------------------------------------------------------------------------------
 
 const evenOddNumericValues = (input) => {
-  // Solution code here...
+  return input.filter((item) => typeof item === 'number').map((item) => item % 2 === 0 ? 'even': 'odd');
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -228,52 +228,52 @@ describe('Testing challenge 3', () => {
   });
 });
 
-// describe('Testing challenge 4', () => {
-//   test('It should return an array containing the stats that are greater than the input', () => {
-//     expect(getBaseStatGreaterThan(snorlaxData.stats, 75)).toStrictEqual([ { stat: { url: 'https://pokeapi.co/api/v2/stat/5/', name: 'special-defense' }, effort: 2, baseStat: 110 } ]);
-//     expect(getBaseStatGreaterThan(snorlaxData.stats, 75).length).toStrictEqual(1);
-//     expect(getBaseStatGreaterThan(snorlaxData.stats, 110)).toStrictEqual([]);
-//   });
-//   test('It should work for non-Snorlax data', () => {
-//     expect(getBaseStatGreaterThan([{baseStat: 10}, {baseStat: -85}, {baseStat: 0}, {baseStat: -50}], -60)).toStrictEqual([{baseStat: 10}, {baseStat: 0}, {baseStat: -50}]);
-//   });
-// });
+describe('Testing challenge 4', () => {
+  test('It should return an array containing the stats that are greater than the input', () => {
+    expect(getBaseStatGreaterThan(snorlaxData.stats, 75)).toStrictEqual([ { stat: { url: 'https://pokeapi.co/api/v2/stat/5/', name: 'special-defense' }, effort: 2, baseStat: 110 } ]);
+    expect(getBaseStatGreaterThan(snorlaxData.stats, 75).length).toStrictEqual(1);
+    expect(getBaseStatGreaterThan(snorlaxData.stats, 110)).toStrictEqual([]);
+  });
+  test('It should work for non-Snorlax data', () => {
+    expect(getBaseStatGreaterThan([{baseStat: 10}, {baseStat: -85}, {baseStat: 0}, {baseStat: -50}], -60)).toStrictEqual([{baseStat: 10}, {baseStat: 0}, {baseStat: -50}]);
+  });
+});
 
-// describe('Testing challenge 5', () => {
-//   test('It should return the name of the stats that exceed that maximum', () => {
-//     expect(getStatName(snorlaxData.stats, 50)).toStrictEqual([ 'special-defense', 'special-attack' ]);
-//     expect(getStatName(snorlaxData.stats, 50).length).toStrictEqual(2);
-//   });
+describe('Testing challenge 5', () => {
+  test('It should return the name of the stats that exceed that maximum', () => {
+    expect(getStatName(snorlaxData.stats, 50)).toStrictEqual([ 'special-defense', 'special-attack' ]);
+    expect(getStatName(snorlaxData.stats, 50).length).toStrictEqual(2);
+  });
 
-//   test('It should return the name of the stats that exceed that maximum', () => {
-//     expect(getStatName(snorlaxData.stats, 120)).toStrictEqual([]);
-//     expect(getStatName(snorlaxData.stats, 120).length).toStrictEqual(0);
-//   });
+  test('It should return the name of the stats that exceed that maximum', () => {
+    expect(getStatName(snorlaxData.stats, 120)).toStrictEqual([]);
+    expect(getStatName(snorlaxData.stats, 120).length).toStrictEqual(0);
+  });
 
-//   test('It should work for non-snorlax data', () => {
-//     expect(getStatName([
-//       {baseStat: 10, stat: {name: 'one'}},
-//       {baseStat: -85, stat: {name: 'two'}},
-//       {baseStat: 0, stat: {name: 'three'}},
-//       {baseStat: -50, stat: {name: 'four'}}
-//     ], -60)).toStrictEqual(['one', 'three', 'four']);
-//   });
-// });
+  test('It should work for non-snorlax data', () => {
+    expect(getStatName([
+      {baseStat: 10, stat: {name: 'one'}},
+      {baseStat: -85, stat: {name: 'two'}},
+      {baseStat: 0, stat: {name: 'three'}},
+      {baseStat: -50, stat: {name: 'four'}}
+    ], -60)).toStrictEqual(['one', 'three', 'four']);
+  });
+});
 
-// describe('Testing challenge 6', () => {
-//   test('It should return an array containing characters who do not have children', () => {
-//     expect(getCharactersWithoutChildren(characters)).toStrictEqual([ { name: 'Sansa', spouse: 'Tyrion', house: 'Stark' }, { name: 'Jon', spouse: null, house: 'Snow' } ]);
-//     expect(getCharactersWithoutChildren(characters).length).toStrictEqual(2);
-//   });
-// });
+describe('Testing challenge 6', () => {
+  test('It should return an array containing characters who do not have children', () => {
+    expect(getCharactersWithoutChildren(characters)).toStrictEqual([ { name: 'Sansa', spouse: 'Tyrion', house: 'Stark' }, { name: 'Jon', spouse: null, house: 'Snow' } ]);
+    expect(getCharactersWithoutChildren(characters).length).toStrictEqual(2);
+  });
+});
 
-// describe('Testing challenge 7', () => {
-//   test('It should remove non-integers and return "even" or "odd', () => {
-//     expect(evenOddNumericValues(['Gregor', 2, 4, 1])).toStrictEqual(['even', 'even', 'odd']);
-//     expect(evenOddNumericValues(['Gregor', 2, 4, 1]).length).toStrictEqual(3);
-//     expect(evenOddNumericValues(['a', 'b', 'c'])).toStrictEqual([]);
-//   });
-//   test('It should not accept strings that look like numbers', () => {
-//     expect(evenOddNumericValues(['1', 2, 3, '4', 5,'6'])).toStrictEqual(['even', 'odd', 'odd']);
-//   });
-// });
+describe('Testing challenge 7', () => {
+  test('It should remove non-integers and return "even" or "odd', () => {
+    expect(evenOddNumericValues(['Gregor', 2, 4, 1])).toStrictEqual(['even', 'even', 'odd']);
+    expect(evenOddNumericValues(['Gregor', 2, 4, 1]).length).toStrictEqual(3);
+    expect(evenOddNumericValues(['a', 'b', 'c'])).toStrictEqual([]);
+  });
+  test('It should not accept strings that look like numbers', () => {
+    expect(evenOddNumericValues(['1', 2, 3, '4', 5,'6'])).toStrictEqual(['even', 'odd', 'odd']);
+  });
+});
