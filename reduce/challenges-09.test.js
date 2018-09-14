@@ -109,7 +109,7 @@ const snorlaxData = {
 };
 
 const extractStat = (statName, input) => {
-  return input.reduce((ext, cur) => cur.name === statName ? cur : ext);
+  return input.reduce((ext, cur) => ext || (cur.stat.name === statName ? cur : null), null);
 };
 
 // ------------------------------------------------------------------------------------------------
