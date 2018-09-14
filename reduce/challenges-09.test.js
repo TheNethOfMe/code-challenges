@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------------------------
 
 const countNumberOfElements = (input) => {
-  // Solution code here...
+  return input.reduce((count) => count += 1);
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ const characters = [
 ];
 
 const countNumberOfChildren = (input) => {
-  // Solution code here...
+  return input.reduce((children, character) => character.hasOwnProperty('children') ? children + character.children.length : children, 0);
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -109,18 +109,18 @@ const snorlaxData = {
 };
 
 const extractStat = (statName, input) => {
-  // Solution code here...
+  return input.reduce((ext, cur) => cur.name === statName ? cur : ext);
 };
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 4
 //
-// Write a function that, given an array of numbers as input, uses ONE call to filter to
+// Write a function that, given an array of numbers as input, uses ONE call to reduce to
 // calculate the array's average value.
 // ------------------------------------------------------------------------------------------------
 
 const calculateAverage = (input) => {
-  // Solution code here...
+  return input.reduce((sum, num) => sum += num) / input.length;
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -134,7 +134,7 @@ const calculateAverage = (input) => {
 // ------------------------------------------------------------------------------------------------
 
 const extractChildren = input => {
-  // Solution code here...
+  return input.filter((character) => /[a]/gi.test(character.name)).reduce((childArr, currentChar) => currentChar.children ? childArr.concat(currentChar.children) : childArr, []);
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -147,7 +147,7 @@ const extractChildren = input => {
 // ------------------------------------------------------------------------------------------------
 
 const reversedString = (input) => {
-  // Solution code here...
+  return input.split('').reduce((rev, letter) => `${letter}${rev}`, '');
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -169,8 +169,8 @@ const isPrime = (value) => {
 };
 
 const countPrimeNumbers = (input) => {
-  // Solution code here...
-}
+  return input.reduce((count, num) => isPrime(num) ? count += 1 : count, 0);
+};
 
 // ------------------------------------------------------------------------------------------------
 // CHALLENGE 8
@@ -230,7 +230,7 @@ let starWarsData = [{
 }]
 
 const returnNames = (data) => {
-  // Solution code here...
+  return data.reduce((charArr, charObj) => charArr.concat(charObj.name), []);
 };
 
 // ------------------------------------------------------------------------------------------------
