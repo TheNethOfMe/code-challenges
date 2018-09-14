@@ -146,8 +146,12 @@ const extractChildren = input => {
 // Note: You must use reduce for this challenge. You may not use the built-in .reverse() string method.
 // ------------------------------------------------------------------------------------------------
 
+// const reversedString = (input) => {
+//   return input.split('').reduce((rev, letter) => `${letter}${rev}`, '');
+// };
+
 const reversedString = (input) => {
-  return input.split('').reduce((rev, letter) => `${letter}${rev}`, '');
+  return input.split('').reduce((rev, letter) => letter + rev, '');
 };
 
 // ------------------------------------------------------------------------------------------------
