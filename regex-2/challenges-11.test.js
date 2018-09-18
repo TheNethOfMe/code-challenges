@@ -70,7 +70,7 @@ const validateEmail = (email) => {
 // ------------------------------------------------------------------------------------------------
 
 const validatePhoneNumber = (phoneNumber) => {
-  // Solution code here...
+  return /^((\(\d{3}\))|\d{3})(\s|\-)?\d{3}(\s|\-)?\d{4}$/.test(phoneNumber);
 };
 
 
@@ -137,26 +137,26 @@ describe('Testing challenge 3', () => {
   })
 });
 
-// describe('Testing challenge 4', () => {
-//   test('It should match the acceptable phone number formats', () => {
-//     expect(validatePhoneNumber('(555) 555-5555')).toBeTruthy();
-//     expect(validatePhoneNumber('555 555-5555')).toBeTruthy();
-//     expect(validatePhoneNumber('555-555-5555')).toBeTruthy();
-//     expect(validatePhoneNumber('555 5555555')).toBeTruthy();
-//     expect(validatePhoneNumber('5555555555')).toBeTruthy();
-//     expect(validatePhoneNumber('234 567 8910')).toBeTruthy();
-//   });
-//   test('It should not match unacceptable phone number formats', () => {
-//     expect(validatePhoneNumber('abcdefghij')).toBeFalsy();
-//     expect(validatePhoneNumber('222 222 2222 ext. 2222')).toBeFalsy();
-//     expect(validatePhoneNumber('(222 222-2222')).toBeFalsy();
-//     expect(validatePhoneNumber('222 222-2222-')).toBeFalsy();
-//     expect(validatePhoneNumber('(222 222- 2222')).toBeFalsy();
-//     expect(validatePhoneNumber('(222 222 -2222')).toBeFalsy();
-//     expect(validatePhoneNumber('523 555--5555')).toBeFalsy();
-//     expect(validatePhoneNumber('55555555555')).toBeFalsy();
-//     expect(validatePhoneNumber('55555555555')).toBeFalsy();
-//     expect(validatePhoneNumber('55555555555')).toBeFalsy();
-//     expect(validatePhoneNumber('55_55_5555')).toBeFalsy();
-//   })
-// });
+describe('Testing challenge 4', () => {
+  test('It should match the acceptable phone number formats', () => {
+    expect(validatePhoneNumber('(555) 555-5555')).toBeTruthy();
+    expect(validatePhoneNumber('555 555-5555')).toBeTruthy();
+    expect(validatePhoneNumber('555-555-5555')).toBeTruthy();
+    expect(validatePhoneNumber('555 5555555')).toBeTruthy();
+    expect(validatePhoneNumber('5555555555')).toBeTruthy();
+    expect(validatePhoneNumber('234 567 8910')).toBeTruthy();
+  });
+  test('It should not match unacceptable phone number formats', () => {
+    expect(validatePhoneNumber('abcdefghij')).toBeFalsy();
+    expect(validatePhoneNumber('222 222 2222 ext. 2222')).toBeFalsy();
+    expect(validatePhoneNumber('(222 222-2222')).toBeFalsy();
+    expect(validatePhoneNumber('222 222-2222-')).toBeFalsy();
+    expect(validatePhoneNumber('(222 222- 2222')).toBeFalsy();
+    expect(validatePhoneNumber('(222 222 -2222')).toBeFalsy();
+    expect(validatePhoneNumber('523 555--5555')).toBeFalsy();
+    expect(validatePhoneNumber('55555555555')).toBeFalsy();
+    expect(validatePhoneNumber('55555555555')).toBeFalsy();
+    expect(validatePhoneNumber('55555555555')).toBeFalsy();
+    expect(validatePhoneNumber('55_55_5555')).toBeFalsy();
+  })
+});
