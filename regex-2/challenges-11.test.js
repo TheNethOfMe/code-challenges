@@ -45,7 +45,7 @@ const findTagNames = elements => {
 // ------------------------------------------------------------------------------------------------
 
 const validateEmail = (email) => {
-  // Solution code here...
+  return /^[a-zA-Z]+(\.[a-zA-Z]+)?\@[a-zA-Z]+\.(com|net|org)$/.test(email);
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -107,35 +107,35 @@ describe('Testing challenge 2', () => {
   });
 });
 
-// describe('Testing challenge 3', () => {
-//   test('It should match a basic email', () => {
-//     expect(validateEmail('joe@codefellows.com')).toBeTruthy();
-//   });
+describe('Testing challenge 3', () => {
+  test('It should match a basic email', () => {
+    expect(validateEmail('joe@codefellows.com')).toBeTruthy();
+  });
 
-//   test('It should match if the email contains a period', () => {
-//     expect(validateEmail('joe.schmoe@codefellows.net')).toBeTruthy();
-//   });
+  test('It should match if the email contains a period', () => {
+    expect(validateEmail('joe.schmoe@codefellows.net')).toBeTruthy();
+  });
 
-//   test('It should match if the email contains other top-level domains', () => {
-//     expect(validateEmail('joe@codefellows.org')).toBeTruthy();
-//   });
+  test('It should match if the email contains other top-level domains', () => {
+    expect(validateEmail('joe@codefellows.org')).toBeTruthy();
+  });
 
-//   test('It should match if the email contains a period and other top-level domains', () => {
-//     expect(validateEmail('joe.schmoe@codefellows.net')).toBeTruthy();
-//   });
+  test('It should match if the email contains a period and other top-level domains', () => {
+    expect(validateEmail('joe.schmoe@codefellows.net')).toBeTruthy();
+  });
 
-//   test ('It should fail things that aren\'t email addresses', () => {
-//     expect(validateEmail('justastring')).toBeFalsy();
-//     expect(validateEmail('missing@adomain')).toBeFalsy();
-//     expect(validateEmail('@noname.com')).toBeFalsy();
-//     expect(validateEmail('.@noname.com')).toBeFalsy();
-//     expect(validateEmail('nolastname.@sadness.net')).toBeFalsy();
-//     expect(validateEmail('canadaisnotreal@canada.ca')).toBeFalsy();
-//     expect(validateEmail('missing.atsymbol.net')).toBeFalsy();
-//     expect(validateEmail('looksgood@sofar.comohnowaitthisisbad')).toBeFalsy();
-//     expect(validateEmail('no.middle.names@foryou.com')).toBeFalsy();
-//   })
-// });
+  test ('It should fail things that aren\'t email addresses', () => {
+    expect(validateEmail('justastring')).toBeFalsy();
+    expect(validateEmail('missing@adomain')).toBeFalsy();
+    expect(validateEmail('@noname.com')).toBeFalsy();
+    expect(validateEmail('.@noname.com')).toBeFalsy();
+    expect(validateEmail('nolastname.@sadness.net')).toBeFalsy();
+    expect(validateEmail('canadaisnotreal@canada.ca')).toBeFalsy();
+    expect(validateEmail('missing.atsymbol.net')).toBeFalsy();
+    expect(validateEmail('looksgood@sofar.comohnowaitthisisbad')).toBeFalsy();
+    expect(validateEmail('no.middle.names@foryou.com')).toBeFalsy();
+  })
+});
 
 // describe('Testing challenge 4', () => {
 //   test('It should match the acceptable phone number formats', () => {
