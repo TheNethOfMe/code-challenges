@@ -147,7 +147,6 @@ const meetings = [
 const sortMeetingsByDay = (meetings) => {
   return meetings.sort((a, b) => {
     if (a.dayOfWeek === b.dayOfWeek) {
-      console.log(a.dayOfWeek, ' is the same as ', b.dayOfWeek);
       return 0;
     } else {
       switch (a.dayOfWeek) {
@@ -178,7 +177,8 @@ const sortMeetingsByDay = (meetings) => {
 // ------------------------------------------------------------------------------------------------
 
 const sortSchedule = (meetings) => {
-  // Solution code here...
+  const sortedbyDays = sortMeetingsByDay(meetings);
+  return sortedbyDays.sort((a, b) => (a.start - a.end) - (b.start - b.end)).sort((a, b) => a.start - b.start);
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -298,15 +298,15 @@ describe('Testing challenge 9', () => {
   });
 });
 
-// describe('Testing challenge 10', () => {
-//   test('It should sort meetings by when they happen', () => {
-//     expect(sortSchedule(meetings)).toStrictEqual([
-//       new Meeting('Monday', '0900', '0945'),
-//       new Meeting('Monday', '0900', '1000'),
-//       new Meeting('Tuesday', '1145', '1315'),
-//       new Meeting('Wednesday', '0930', '1000'),
-//       new Meeting('Wednesday', '1300', '1500'),
-//       new Meeting('Friday', '1200', '1345'),
-//     ]);
-//   });
-// });
+describe('Testing challenge 10', () => {
+  test('It should sort meetings by when they happen', () => {
+    expect(sortSchedule(meetings)).toStrictEqual([
+      new Meeting('Monday', '0900', '0945'),
+      new Meeting('Monday', '0900', '1000'),
+      new Meeting('Tuesday', '1145', '1315'),
+      new Meeting('Wednesday', '0930', '1000'),
+      new Meeting('Wednesday', '1300', '1500'),
+      new Meeting('Friday', '1200', '1345'),
+    ]);
+  });
+});
