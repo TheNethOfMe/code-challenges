@@ -144,27 +144,39 @@ const meetings = [
   new Meeting('Friday', '1200', '1345'),
 ];
 
+// BAD SOLUTION I HAD
+// const sortMeetingsByDay = (meetings) => {
+//   return meetings.sort((a, b) => {
+//     if (a.dayOfWeek === b.dayOfWeek) {
+//       return 0;
+//     } else {
+//       switch (a.dayOfWeek) {
+//       case 'Monday':
+//         return -1;
+//       case 'Tuesday':
+//         return b.dayOfWeek === 'Monday' ? 1 : -1;
+//       case 'Wednesday':
+//         return b.dayOfWeek === 'Monday' || b.dayOfWeek === 'Tuesday' ? 1 : -1;
+//       case 'Thursday':
+//         return b.dayOfWeek === 'Friday' ? -1 : 1;
+//       case 'Friday':
+//         return 1;
+//       default:
+//         return 0;
+//       }
+//     }
+//   });
+// };
+// MUCH BETTER SOLUTION MICHELLE HAD
 const sortMeetingsByDay = (meetings) => {
-  return meetings.sort((a, b) => {
-    if (a.dayOfWeek === b.dayOfWeek) {
-      return 0;
-    } else {
-      switch (a.dayOfWeek) {
-      case 'Monday':
-        return -1;
-      case 'Tuesday':
-        return b.dayOfWeek === 'Monday' ? 1 : -1;
-      case 'Wednesday':
-        return b.dayOfWeek === 'Monday' || b.dayOfWeek === 'Tuesday' ? 1 : -1;
-      case 'Thursday':
-        return b.dayOfWeek === 'Friday' ? -1 : 1;
-      case 'Friday':
-        return 1;
-      default:
-        return 0;
-      }
-    }
-  });
+  const dayToNum = {
+    Monday: 0,
+    Tuesday: 1,
+    Wednesday: 2,
+    Thursday: 3,
+    Friday: 4
+  }
+  return meetings.sort((a, b) => dayToNum[a.dayOfWeek] - dayToNum[b.dayOfWeek]);
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -177,7 +189,8 @@ const sortMeetingsByDay = (meetings) => {
 // ------------------------------------------------------------------------------------------------
 
 const sortSchedule = (meetings) => {
-  return sortMeetingsByDay(meetings.sort((a, b) => a.end - b.end).sort((a, b) => a.start - b.start));
+  // return sortMeetingsByDay(meetings.sort((a, b) => a.end - b.end).sort((a, b) => a.start - b.start));
+  return sortMeetingsByDay(meetings.sort((a, b) => a.start - b.start || a.end - b.end));
 };
 
 // ------------------------------------------------------------------------------------------------
