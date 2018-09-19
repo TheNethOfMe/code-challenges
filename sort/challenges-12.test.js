@@ -177,8 +177,10 @@ const sortMeetingsByDay = (meetings) => {
 // ------------------------------------------------------------------------------------------------
 
 const sortSchedule = (meetings) => {
-  const sortedbyDays = sortMeetingsByDay(meetings);
-  return sortedbyDays.sort((a, b) => (a.start - a.end) - (b.start - b.end)).sort((a, b) => a.start - b.start);
+  const sorted = meetings.sort((a, b) => a.end - b.end).sort((a, b) => a.start - b.start);
+  const sortedbyDays = sortMeetingsByDay(sorted);
+  console.log(sortedbyDays);
+  return sortedbyDays;
 };
 
 // ------------------------------------------------------------------------------------------------
