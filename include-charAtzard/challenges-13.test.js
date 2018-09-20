@@ -46,10 +46,13 @@ const standardizePhoneNumbers = (phoneNumbers) => {
 
 const onlyOddChars = (str) => {
   let result = '';
-  for (let i = 0; i < str.length; i++) {
-    result += i % 2 === 1 ? str.charAt(i, 1) : '';
+  for (let i = 1; i < str.length; i += 2) {
+    result += str.charAt(i, 1);
   }
   return result;
+
+  // A better solution but doesn't use charAt
+  // return str.split('').filter((letter, i) => !!(i % 2)).join('');
 };
 
 // ------------------------------------------------------------------------------------------------
